@@ -28,6 +28,7 @@
             </tbody>
           </template>
         </table>
+        <button class="btn" @click="exportFile">Export XLSX</button>
       </div>
     </div>
   </div>
@@ -35,6 +36,9 @@
 
 
 <script>
+import { ref, onMounted } from "vue";
+import { read, utils, writeFileXLSX } from "xlsx";
+
 export default {
   data() {
     return {
@@ -45,10 +49,22 @@ export default {
           teg: "@mdo",
         },
       ],
+      fieldsa: ["a", "w"],
     };
+  },
+  methods: {
+    exportFile() {
+      const ws = utils.json_to_sheet(this.tableRows);
+      const wb = utils.book_new();
+      utils.book_append_sheet(wb, ws, "Data");
+      writeFileXLSX(wb, "SheetJSVueAoO.xlsx");
+    },
   },
 };
 </script>
+
+
+
 
 <style lang="scss">
 .community {
