@@ -1,13 +1,15 @@
 <template>
-  <div>
+  <div class="wrapper">
     <slot></slot>
   </div>
 </template>
 
-
-<script>
-// This will work in both `<script setup>` and `<script>`
-definePageMeta({
-  layout: "default",
-});
-</script>
+<style lang="scss">
+.wrapper{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  }
+</style>
