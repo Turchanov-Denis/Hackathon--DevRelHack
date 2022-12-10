@@ -4,7 +4,7 @@ export const useMainStore = defineStore({
     id: 'filter-store',
     state: () => {
         return {
-            isLogin: true,
+            isLogin: false,
             inputCom: '',
             cardList: [{
                 title: "Github",

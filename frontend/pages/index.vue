@@ -4,23 +4,23 @@
     <div class="select-section__container">
       <template 
         v-for="(item, index) in (MainStore.getInputCom.length>0)?cardList.filter(item => item.title.toUpperCase().includes(MainStore.getInputCom.toUpperCase())):cardList" class="select-section__container" :key="index" >
-        <LazyCard
+        <Card
           :title="item.title"
           :descr="item.descr"
           :link="item.link"
           :icon="item.icon"
-        ></LazyCard>
+        ></Card>
       </template>
     </div>
   </div>
 </template>
 
 <script>
-import LazyCard from "~~/components/LazyCard.vue";
+import Card from "~~/components/Card.vue";
 import { useMainStore } from "~/store/common";
 
 export default {
-  components: { LazyCard },
+  components: { Card },
   setup() {
     const MainStore = useMainStore();
     const cardList = MainStore.cardList;

@@ -1,7 +1,7 @@
 <template>
     <header class="header">
       <div style="display: flex; align-items: center">
-        <img src="../public/img/logo.png" alt="" class="header__logo" />
+        <NuxtLink to="/"><img src="../public/img/logo.png" alt="" class="header__logo" /></NuxtLink>
       </div>
     </header>
   </template>
