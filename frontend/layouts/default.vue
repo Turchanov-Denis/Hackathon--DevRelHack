@@ -5,6 +5,7 @@
 </template>
 
 <style lang="scss">
+@import '../assets/scss/nullstyle.scss';
 .wrapper{
   position: absolute;
   top: 0;
