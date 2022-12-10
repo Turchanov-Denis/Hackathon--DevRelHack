@@ -5,7 +5,7 @@ export const useMainStore = defineStore({
     state: () => {
         return {
             isLogin: true,
-            inputCom: 'ww',
+            inputCom: '',
             cardList: [{
                 title: "Github",
                 descr: "крупнейший веб-сервис для хостинга IT-проектов и их совместной разработки. Веб-сервис основан на системе контроля версий Git и разработан на Ruby on Rails и Erlang компанией GitHub, Inc.",

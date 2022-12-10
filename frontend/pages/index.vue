@@ -3,7 +3,7 @@
     <h1>Выберите сервис</h1>
     <div class="select-section__container">
       <template 
-        v-for="(item, index) in cardList.filter(item => item.title.toUpperCase().includes(MainStore.getInputCom.toUpperCase()))" class="select-section__container" :key="index" >
+        v-for="(item, index) in (MainStore.getInputCom.length>0)?cardList.filter(item => item.title.toUpperCase().includes(MainStore.getInputCom.toUpperCase())):cardList" class="select-section__container" :key="index" >
         <LazyCard
           :title="item.title"
           :descr="item.descr"
