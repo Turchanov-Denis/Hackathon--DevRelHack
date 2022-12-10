@@ -9,7 +9,7 @@
     </div>
     <div class="login__column">
       <div class="login__interface">
-        <h2>Вход</h2>
+        <h2>Войти</h2>
         <div class="login__input">
           <label> Логин </label>
           <input type="text" />
@@ -30,10 +30,17 @@
 </template>
 
 <script>
-import HeaderLogin from '~~/components/HeaderLogin.vue';
+import { useMainStore } from "~/store/common";
+import HeaderLogin from "~~/components/HeaderLogin.vue";
 export default {
-  components: {HeaderLogin}
-}
+  components: { HeaderLogin },
+  setup() {
+    const MainStore = useMainStore();
+    const isLogin = MainStore.isLogin;
+
+    return { isLogin };
+  },
+};
 </script>
 <style lang="scss">
 .login {
