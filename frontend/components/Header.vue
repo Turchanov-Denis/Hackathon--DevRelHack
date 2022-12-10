@@ -1,15 +1,28 @@
 <template>
   <header class="header">
-    <img src="../public/img/logo.png" alt="" class="header__logo" />
-    <input placeholder="найти сообщества" type="text" />
+    <div style="display: flex; align-items: center">
+      <img src="../public/img/logo.png" alt="" class="header__logo" />
+    </div>
+    <input @input="event=>changeCartFilter(event.target.value)" placeholder="найти сообщества" type="text" />
   </header>
 </template>
 
+<script>
+import { useMainStore } from "~/store/common";
+export default {
+  setup() {
+    const MainStore = useMainStore();
+    const changeCartFilter = MainStore.changeCartFilter;
+
+    return { changeCartFilter };
+  },
+};
+</script>
 
 <style lang="scss">
 .header {
-  padding: 0 300px;
   align-items: center;
+  padding: 0 300px;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -19,6 +32,20 @@
   &__logo {
     width: 163px;
     height: 48px;
+  }
+  ul {
+    display: flex;
+    li {
+      padding: 0 10px;
+      font-family: "Montserrat";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 24px;
+      /* identical to box height, or 150% */
+
+      color: #ffffff;
+    }
   }
   input {
     padding-left: 10px;

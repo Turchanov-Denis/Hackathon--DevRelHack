@@ -1,7 +1,8 @@
 <template>
   <div class="card">
     <div class="card__container">
-      <img src="../assets/serviceIcon/github.png" />
+      <!-- <img :src="`\assets\serviceIcon\${icon}.png`" /> -->
+      <img :src="icon" />
       <div class="card__title">{{ title }}</div>
     </div>
     <div class="card__descr">
@@ -15,26 +16,29 @@
 <script>
 export default {
   props: {
+    items: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
+  },
+  props: {
     title: String,
     descr: String,
     link: String,
-    icon: { type: String, default: "github" },
+    icon: String
   },
   data() {
-    return {};
-  },
-  computed: {
-    imagePath() {
-      if (this.icon !== "") {
-        return require(`@/assets/serviceIcon/${this.icon}.png`);
-      }
-    },
+    return {
+    };
   },
 };
 </script>
 
 <style lang="scss">
 .card {
+  margin: 0 30px;
   width: 315px;
   height: 393px;
   padding: 41px 25px;
