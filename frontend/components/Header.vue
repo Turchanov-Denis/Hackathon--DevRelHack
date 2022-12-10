@@ -1,6 +1,7 @@
 <template>
   <header class="header">
     <img src="../public/img/logo.png" alt="" class="header__logo" />
+    <input placeholder="найти сообщества" type="text" />
   </header>
 </template>
 
@@ -19,6 +20,14 @@
     width: 163px;
     height: 48px;
   }
-  
+  input {
+    padding-left: 10px;
+    width: 390px;
+    height: 45px;
+    background: #ffffff;
+    border: 2px solid #fe7865;
+    box-shadow: 0px 16px 48px rgba(183, 184, 190, 0.459862);
+    border-radius: 3px;
+  }
 }
 </style>
