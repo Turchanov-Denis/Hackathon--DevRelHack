@@ -5,7 +5,7 @@
         Веб-сервис, который позволяет просматривать и анализировать информацию о
         сообществе, делать выборки по разным параметрам.
       </h1>
-      <img src="../public/img/loginImg.png" alt="" />
+      <img src="../../public/img/loginImg.png" alt="" />
     </div>
     <div class="login__column">
       <div class="login__interface">
@@ -22,18 +22,25 @@
 
         <div>
           <button>Войти</button>
-          <NuxtLink to="/">Зарегестрироваться</NuxtLink>
+          <NuxtLink to="/login/registration">Зарегестрироваться</NuxtLink>
         </div>
       </div>
     </div>
   </div>
 </template>
 
+<script>
+import HeaderLogin from '~~/components/HeaderLogin.vue';
+export default {
+  components: {HeaderLogin}
+}
+</script>
 <style lang="scss">
 .login {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: 70px;
   width: 100%;
   height: 100%;
   background-image: url("/img/background.png");
@@ -61,6 +68,16 @@
     background: #ffffff;
     border: 1px solid #000000;
     border-radius: 9px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    /* identical to box height, or 160% */
+
+    text-align: center;
+
+    color: #000000;
   }
   &__column {
     flex: 0 0 500px;
@@ -93,6 +110,7 @@
     background: #2a2a2a;
     border-radius: 5px;
     input {
+      padding-left: 10px;
       width: 320px;
       height: 40px;
       /* Base/White */
@@ -130,6 +148,9 @@
   }
   &__input {
     padding: 10px 0;
+    &_reg {
+      padding: 5px 0;
+    }
   }
 }
 </style>
