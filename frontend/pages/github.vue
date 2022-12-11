@@ -5,10 +5,10 @@
         <img src="../assets/serviceIcon/github.png" />
         <div class="community__label">GitHub</div>
       </div>
-      <input placeholder="Введите название сообщества..." type="text" />
+      <!-- <input placeholder="Введите название сообщества..." type="text" /> -->
 
-      <div>
-        <table class="table table-dark">
+      <div style="margin:30px 0;display: block;overflow:auto;height: 500px;">
+        <table class="table table-dark" >
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -21,15 +21,16 @@
             <tbody>
               <tr>
                 <th scope="row">{{ index + 1 }}</th>
-                <td>{{ item.name }}</td>
-                <td>{{ item.amount }}</td>
-                <td>{{ item.teg }}</td>
+                <td><a href="/">{{ item.name }}</a></td>
+                <td>{{ item.watchers_count }}</td>
+                <td>{{ (item.topics)?item.topics.slice(0, 10): item.topics}}</td>
               </tr>
             </tbody>
           </template>
         </table>
-        <button class="btn" @click="exportFile">Export XLSX</button>
       </div>
+      <button  class="btn" @click="getRepos">Export XLSX</button>
+
     </div>
   </div>
 </template>
@@ -38,18 +39,18 @@
 <script>
 import { ref, onMounted } from "vue";
 import { read, utils, writeFileXLSX } from "xlsx";
-
+import axios from "axios";
 export default {
   data() {
     return {
       tableRows: [
         {
-          name: "Mark",
-          amount: "2",
-          teg: "@mdo",
+          name: "",
+          amount: "",
+          teg: "",
         },
       ],
-      fieldsa: ["a", "w"],
+      fieldsa: ["Название сообщества", "Количество учатников", "тег"],
     };
   },
   methods: {
@@ -59,6 +60,17 @@ export default {
       utils.book_append_sheet(wb, ws, "Data");
       writeFileXLSX(wb, "SheetJSVueAoO.xlsx");
     },
+    async getRepos() {
+      const res = await axios.get(
+        "https://api.github.com/search/repositories?q=stars%3A%3E0&sort=stars&order=desc&page=1&per_page=20"
+      );
+      console.log(res.data.items);
+    },
+  },
+  mounted() {
+    axios.get("https://api.github.com/search/repositories?q=stars%3A%3E0&sort=stars&order=desc&page=1&per_page=20"
+      )
+      .then((response) => (this.tableRows = response.data.items));
   },
 };
 </script>

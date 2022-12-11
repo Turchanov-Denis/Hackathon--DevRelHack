@@ -1,11 +1,11 @@
 <template>
-  <div class="card">
-    <div class="card__container">
+  <div class="card-l">
+    <div class="card-l__container">
       <!-- <img :src="`\assets\serviceIcon\${icon}.png`" /> -->
       <img :src="icon" />
-      <div class="card__title">{{ title }}</div>
+      <div class="card-l__title">{{ title }}</div>
     </div>
-    <div class="card__descr">
+    <div class="card-l__descr">
       {{ descr }}
     </div>
     <NuxtLink :to="link"><button>Выбрать</button></NuxtLink>
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss">
-.card {
+.card-l {
   margin: 0 30px;
   width: 315px;
   height: 393px;
