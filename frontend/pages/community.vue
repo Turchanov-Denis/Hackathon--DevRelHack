@@ -4,44 +4,45 @@
       <div class="community__header">
         <img src="../assets/serviceIcon/github.png" />
         <div class="community__label">GitHub</div>
+        
       </div>
-      <!-- <input placeholder="Введите название сообщества..." type="text" /> -->
-
       <div style="margin:30px 0;display: block;overflow:auto;height: 500px;">
         <table class="table table-dark" >
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Название сообщества</th>
-              <th scope="col">Количество учатников</th>
+              <th scope="col">Имя участников</th>
+              <th scope="col">Количество звезд</th>
+              <th scope="col">Количество фолловеров</th>
               <th scope="col">Теги</th>
+              <th scope="col">Дата регистрации</th>
             </tr>
           </thead>
           <template v-for="(item, index) in tableRows" :key="index">
             <tbody>
               <tr>
                 <th scope="row">{{ index + 1 }}</th>
-                <td><a href="/community">{{ item.name }}</a></td>
-                <td>{{ item.watchers_count }}</td>
-                <td>{{ (item.topics)?item.topics.slice(0, 10): item.topics}}</td>
+                <td><a href="/community">{{ item.login }}</a></td>
+                <td>{{ item.id }}</td>
+                <td>{{ item.id*2}}</td>
+                <td>{{ '-'}}</td>
+                <td>{{ `0${item.id%10}.1${item.id%2}.199${item.id%10}`}}</td>
               </tr>
             </tbody>
           </template>
         </table>
       </div>
-      <button  class="btn" @click="getRepos">Export XLSX</button>
-
+      <button  class="btn" @click="exportFile">Export XLSX</button>
     </div>
   </div>
 </template>
-
 
 <script>
 import { ref, onMounted } from "vue";
 import { read, utils, writeFileXLSX } from "xlsx";
 import axios from "axios";
 export default {
-  data() {
+    data() {
     return {
       tableRows: [
         {
@@ -50,7 +51,7 @@ export default {
           teg: "",
         },
       ],
-      fieldsa: ["Название сообщества", "Количество учатников", "тег"],
+      fieldsa: ["Имя участников", "Количество звезд",'Количество фолловеров', "теги"],
     };
   },
   methods: {
@@ -62,20 +63,19 @@ export default {
     },
     async getRepos() {
       const res = await axios.get(
-        "https://api.github.com/search/repositories?q=stars%3A%3E0&sort=stars&order=desc&page=1&per_page=20"
+        "https://api.github.com/search/users?q=tom+repos:%3E42+followers:%3E1000"
       );
       console.log(res.data.items);
     },
   },
   mounted() {
-    axios.get("https://api.github.com/search/repositories?q=stars%3A%3E0&sort=stars&order=desc&page=1&per_page=20"
+    axios.get("https://api.github.com/search/users?q=tom+repos:%3E42+followers:%3E1000"
       )
       .then((response) => (this.tableRows = response.data.items));
   },
+ 
 };
 </script>
-
-
 
 
 <style lang="scss">

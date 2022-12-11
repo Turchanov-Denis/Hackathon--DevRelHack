@@ -1,9 +1,8 @@
 <template>
   <div class="wrapper">
-    <template v-if="!isLogin"><HeaderLogin /></template>
     <template v-if="route.name=='index'"><Header></Header></template>
     <template v-if="route.name=='github'"><HomeHeader></HomeHeader></template>
-
+    <template v-if="route.name=='community'"><HomeHeader></HomeHeader></template>
     <slot></slot>
   </div>
 </template>
@@ -20,7 +19,6 @@ export default {
     console.log("current name", route.name);
     const MainStore = useMainStore();
     const isLogin = MainStore.isLogin;
-
     return { isLogin, route };
   },
 };

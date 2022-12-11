@@ -21,8 +21,9 @@
         </div>
 
         <div>
-          <button>Войти</button>
-          <NuxtLink to="/login/registration">Зарегестрироваться</NuxtLink>
+          <NuxtLink  to="/">Войти</NuxtLink>
+          
+          <NuxtLink @click="changeLogin" to="/login/registration">Зарегестрироваться</NuxtLink>
         </div>
       </div>
     </div>
@@ -37,8 +38,9 @@ export default {
   setup() {
     const MainStore = useMainStore();
     const isLogin = MainStore.isLogin;
+    const changeLogin = MainStore.changeLogin;
 
-    return { isLogin };
+    return { isLogin,changeLogin };
   },
 };
 </script>

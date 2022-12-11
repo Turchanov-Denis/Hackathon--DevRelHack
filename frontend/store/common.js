@@ -4,7 +4,7 @@ export const useMainStore = defineStore({
     id: 'filter-store',
     state: () => {
         return {
-            isLogin: true,
+            isLogin: false,
             inputCom: '',
             cardList: [{
                 title: "Github",
@@ -17,6 +17,11 @@ export const useMainStore = defineStore({
                 descr: "система вопросов и ответов о программировании, разработанная Джоэлем Спольски и Джеффом Этвудом в 2008 году. Является частью Stack Exchange Network.",
                 link: "stackoverflow",
                 icon: "http://localhost:3000/_nuxt/assets/serviceIcon/stack.png"
+            }, {
+                title: "Календарь",
+                descr: "Афиша главных мероприятий",
+                link: "stackoverflow",
+                icon: "http://localhost:3000/_nuxt/assets/serviceIcon/calendar.png"
             }]
         }
     },
@@ -24,10 +29,15 @@ export const useMainStore = defineStore({
         changeCartFilter(value) {
             this.inputCom = value;
             console.log(this.inputCom);
+        },
+        changeLogin() {
+            this.isLogin = !this.isLogin
+            console.log(this.isLogin);
         }
+
     },
     getters: {
         getInputCom: (state) => state.inputCom
-        
+
     }
 })

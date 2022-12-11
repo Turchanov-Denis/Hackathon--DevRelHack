@@ -9,7 +9,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     // current running app
     const main = useMainStore(pinia)
 
-    if (!main.isLogin) return '/login'
+    return ''
 
     
 })
